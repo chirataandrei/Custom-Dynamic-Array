@@ -184,6 +184,17 @@ namespace custom {
 	}
 
 	template<typename T>
+	template <typename... Args>
+	T& Vector<T>::emplace_back(Args&&... args) {
+		if (m_size == m_capacity) {
+        	reserve((m_capacity == 0) ? 1 : m_capacity * 2);
+   		}
+
+		m_data[m_size++] = T(std::forward<Args>(args)...);
+		return m_data[m_size - 1];
+	}
+
+	template<typename T>
 	void Vector<T>::pop_back() {
 		if (empty()) {
         	throw std::out_of_range("Cannot pop_back from an empty vector");

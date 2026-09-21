@@ -50,6 +50,8 @@ namespace custom {
 			// modifiers
 			void push_back(const T& value);
 			void push_back(T&& value);
+			template <typename... Args>
+			T& emplace_back(Args&&... args);
 			void pop_back();
 			void clear();
 			void insert(size_t index, const T& value);
