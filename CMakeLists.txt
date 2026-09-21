@@ -7,3 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include_directories(include)
 
 add_executable(main src/main.cpp)
+
+enable_testing()
+add_executable(unit_tests tests/test_vector.cpp)
+add_test(NAME unit_tests COMMAND unit_tests)

@@ -1,3 +1,5 @@
 /Users/chirataandrei/Documents/PROJECTS/Custom Dynamic Array/build/CMakeFiles/main.dir
+/Users/chirataandrei/Documents/PROJECTS/Custom Dynamic Array/build/CMakeFiles/unit_tests.dir
+/Users/chirataandrei/Documents/PROJECTS/Custom Dynamic Array/build/CMakeFiles/test.dir
 /Users/chirataandrei/Documents/PROJECTS/Custom Dynamic Array/build/CMakeFiles/edit_cache.dir
 /Users/chirataandrei/Documents/PROJECTS/Custom Dynamic Array/build/CMakeFiles/rebuild_cache.dir

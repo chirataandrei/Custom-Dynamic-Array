@@ -65,6 +65,16 @@ CMAKE_BINARY_DIR = "/Users/chirataandrei/Documents/PROJECTS/Custom Dynamic Array
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
+	/opt/homebrew/bin/ctest $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+.PHONY : test/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
@@ -129,6 +139,19 @@ main/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
+#=============================================================================
+# Target rules for targets named unit_tests
+
+# Build rule for target.
+unit_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 unit_tests
+.PHONY : unit_tests
+
+# fast build rule for target.
+unit_tests/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/unit_tests.dir/build.make CMakeFiles/unit_tests.dir/build
+.PHONY : unit_tests/fast
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -153,6 +176,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+tests/test_vector.o: tests/test_vector.cpp.o
+.PHONY : tests/test_vector.o
+
+# target to build an object file
+tests/test_vector.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/unit_tests.dir/build.make CMakeFiles/unit_tests.dir/tests/test_vector.cpp.o
+.PHONY : tests/test_vector.cpp.o
+
+tests/test_vector.i: tests/test_vector.cpp.i
+.PHONY : tests/test_vector.i
+
+# target to preprocess a source file
+tests/test_vector.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/unit_tests.dir/build.make CMakeFiles/unit_tests.dir/tests/test_vector.cpp.i
+.PHONY : tests/test_vector.cpp.i
+
+tests/test_vector.s: tests/test_vector.cpp.s
+.PHONY : tests/test_vector.s
+
+# target to generate assembly for a file
+tests/test_vector.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/unit_tests.dir/build.make CMakeFiles/unit_tests.dir/tests/test_vector.cpp.s
+.PHONY : tests/test_vector.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -161,10 +208,15 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... test"
 	@echo "... main"
+	@echo "... unit_tests"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... tests/test_vector.o"
+	@echo "... tests/test_vector.i"
+	@echo "... tests/test_vector.s"
 .PHONY : help
 
 
