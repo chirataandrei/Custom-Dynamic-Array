@@ -3,9 +3,10 @@
 #include <cstddef>
 
 namespace custom {
+	template <typename T>
 	class Vector {
 		private:
-			int* m_data;
+			T* m_data;
 			size_t m_size;
 			size_t m_capacity;
 
@@ -28,36 +29,36 @@ namespace custom {
 			size_t size() const;
 			size_t capacity() const;
 			bool empty() const;
-			int& operator[](size_t index);
-			const int& operator[](size_t index) const;
+			T& operator[](size_t index);
+			const T& operator[](size_t index) const;
 
 			// element acces methods
-			const int& at(size_t index) const;
-			int& at(size_t index);
-			const int& front() const;
-			int& front();
-			const int& back() const;
-			int& back();
-			const int* data() const;
-			int* data();
+			const T& at(size_t index) const;
+			T& at(size_t index);
+			const T& front() const;
+			T& front();
+			const T& back() const;
+			T& back();
+			const T* data() const;
+			T* data();
 			
 			// capacity management
 			void reserve(size_t new_capacity);
 			void shrink_to_fit();
-			void resize(size_t new_size, int default_value = 0);
+			void resize(size_t new_size, T default_value = 0);
 			
 			// modifiers
-			void push_back(int value);
+			void push_back(T value);
 			void pop_back();
 			void clear();
-			void insert(size_t index, int value);
+			void insert(size_t index, T value);
 			void erase(size_t index);
 			void swap(Vector &other);
 
 			// support for iterators
-			const int* begin() const;
-			int* begin();
-			const int* end() const;
-			int* end();
+			const T* begin() const;
+			T* begin();
+			const T* end() const;
+			T* end();
 	};	
 }
