@@ -70,7 +70,7 @@ namespace custom {
 
 	size_t Vector::size() const { return m_size; } 
 	size_t Vector::capacity() const { return m_capacity; }
-	bool Vector::empty() const { return (m_size == 0 ? true : false); }
+	bool Vector::empty() const { return m_size == 0; }
 
 	int& Vector::operator[](size_t index) { return *(m_data + index); }
 	const int& Vector::operator[](size_t index) const { return *(m_data + index); }
@@ -89,8 +89,8 @@ namespace custom {
 		return m_data[index];
 	}
 
-	const int& Vector::front() const { return m_data[0]; };
-	int& Vector::front() { return m_data[0]; };
+	const int& Vector::front() const { return m_data[0]; }
+	int& Vector::front() { return m_data[0]; }
 
 	const int& Vector::back() const {return m_data[m_size - 1]; }
 	int& Vector::back() {return m_data[m_size - 1]; }
@@ -104,7 +104,7 @@ namespace custom {
 		}
 		int* new_data = new int[new_capacity];
 		if (m_size > 0) {
-			memcpy(new_data, m_data, m_size * sizeof(int));
+			std::memcpy(new_data, m_data, m_size * sizeof(int));
 		}
 		delete[] m_data;
 		m_data = new_data;
@@ -119,6 +119,7 @@ namespace custom {
 		if (m_size == 0) {
 			delete[] m_data;
 			m_capacity = 0;
+			m_data = nullptr;
 			return;
 		}
 
@@ -145,8 +146,7 @@ namespace custom {
 
 	void Vector::push_back(int value) {
 		if (m_size == m_capacity) {
-			reserve(2 * m_capacity);
-			m_capacity *= 2;
+			reserve((m_capacity == 0) ? 1 : m_capacity * 2);
 		}
 		m_data[m_size++] = value;
 	}
@@ -189,7 +189,7 @@ namespace custom {
 			return;
 		}
 
-		for (size_t i = m_size - 2; i >= index; i--) {
+		for (size_t i = index; i < m_size - 1; ++i) {
 			m_data[i] = m_data[i + 1];
 		}
 
