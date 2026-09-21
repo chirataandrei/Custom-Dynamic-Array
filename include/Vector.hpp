@@ -45,13 +45,15 @@ namespace custom {
 			// capacity management
 			void reserve(size_t new_capacity);
 			void shrink_to_fit();
-			void resize(size_t new_size, T default_value = 0);
+			void resize(size_t new_size, const T& default_value = T{});
 			
 			// modifiers
-			void push_back(T value);
+			void push_back(const T& value);
+			void push_back(T&& value);
 			void pop_back();
 			void clear();
-			void insert(size_t index, T value);
+			void insert(size_t index, const T& value);
+			void insert(size_t index, T&& value);
 			void erase(size_t index);
 			void swap(Vector &other);
 
@@ -62,3 +64,5 @@ namespace custom {
 			T* end();
 	};	
 }
+
+#include "Vector.tpp"
